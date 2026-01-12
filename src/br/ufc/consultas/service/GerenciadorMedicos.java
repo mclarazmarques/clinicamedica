@@ -64,4 +64,10 @@ public class GerenciadorMedicos {
             // ignora se não existir
         }
     }
+    public static void remover(Medico medico) {
+    carregar();
+    medicos.remove(medico);
+    salvar();
+}
+
 }

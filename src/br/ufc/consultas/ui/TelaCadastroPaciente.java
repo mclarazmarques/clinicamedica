@@ -3,14 +3,12 @@ package ui;
 import javax.swing.*;
 import model.Paciente;
 import service.GerenciadorPacientes;
-import ui.TelaListaPacientes;
-
 
 public class TelaCadastroPaciente extends JFrame {
 
     public TelaCadastroPaciente() {
         setTitle("Cadastro de Paciente");
-         setSize(1024, 695);
+        setSize(1024, 695);
         setLayout(null);
 
         JLabel lblNome = new JLabel("Nome:");
@@ -51,36 +49,18 @@ public class TelaCadastroPaciente extends JFrame {
             JOptionPane.showMessageDialog(this, "Paciente cadastrado!");
         });
 
-        setVisible(true);
-
         JButton btnListar = new JButton("Listar Pacientes");
         btnListar.setBounds(90, 190, 150, 30);
         add(btnListar);
 
         btnListar.addActionListener(e -> new TelaListaPacientes());
 
-
         JButton btnExcluir = new JButton("Excluir");
         btnExcluir.setBounds(90, 230, 100, 30);
         add(btnExcluir);
 
-btnExcluir.addActionListener(e -> {
-    String cpf = txtCpf.getText();
+        btnExcluir.addActionListener(e -> new TelaExcluirPaciente());
 
-    if (cpf.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "Informe o CPF para excluir.");
-        return;
-    }
-
-    boolean ok = GerenciadorPacientes.removerPorCpf(cpf);
-
-    if (ok) {
-        JOptionPane.showMessageDialog(this, "Paciente removido!");
-    } else {
-        JOptionPane.showMessageDialog(this, "CPF não encontrado.");
-    }
-});
-
-
+        setVisible(true);
     }
 }

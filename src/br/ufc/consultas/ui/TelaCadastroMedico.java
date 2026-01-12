@@ -63,22 +63,8 @@ public class TelaCadastroMedico extends JFrame {
         btnExcluir.setBounds(410, 380, 180, 30);
         add(btnExcluir);
 
-        btnExcluir.addActionListener(e -> {
-        String cpf = txtCpf.getText();
+        btnExcluir.addActionListener(e -> new TelaExcluirMedico());
 
-    if (cpf.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "Informe o CPF para excluir.");
-        return;
-    }
-
-    boolean removido = GerenciadorMedicos.removerPorCpf(cpf);
-
-    if (removido) {
-        JOptionPane.showMessageDialog(this, "Médico excluído com sucesso!");
-    } else {
-        JOptionPane.showMessageDialog(this, "Médico não encontrado.");
-    }
-});
 
     }
 }
