@@ -6,13 +6,17 @@ import model.Consulta;
 
 public class GerenciadorConsultas {
 
-private List<Consulta> consultas = new ArrayList<>();    
+    private List<Consulta> consultas = new ArrayList<>();
 
-public void agendar(Consulta c){
-    consultas.add(c);
-}
+    public void agendar(Consulta c) {
+        consultas.add(c);
+    }
 
-public List<Consulta> listar(){
-    return consultas;
-}
+    public void remover(Consulta c) {
+        consultas.remove(c);
+    }
+
+    public List<Consulta> listar() {
+        return consultas;
+    }
 }

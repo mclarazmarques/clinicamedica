@@ -1,18 +1,44 @@
 package model;
-public class Paciente extends Pessoa{
-    public String planoSaude;
 
-public Paciente(String nome, String cpf, String planoSaude){
-    super(nome, cpf);
-    this.planoSaude = planoSaude;
-}
-@Override
-public String getDescricao(){
-    return "O paciente " + getNome() + "possui o plano de saúde: " + planoSaude;
-}
+public class Paciente {
 
-@Override
-public String toString() {
-    return "Nome: " + getNome() + " | CPF: " + getCpf() + " | Plano de Saúde: " + planoSaude;
-}
+    private String nome;
+    private String cpf;
+    private String planoSaude;
+
+    public Paciente(String nome, String cpf, String planoSaude) {
+        this.nome = nome;
+        this.cpf = cpf;
+        this.planoSaude = planoSaude;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public String getPlanoSaude() {
+        return planoSaude;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setPlanoSaude(String planoSaude) {
+        this.planoSaude = planoSaude;
+    }
+
+    @Override
+    public String toString() {
+        return nome + " | CPF: " + cpf + " | Plano: " + planoSaude;
+    }
+
+    public String getTelefone() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getTelefone'");
+    }
 }

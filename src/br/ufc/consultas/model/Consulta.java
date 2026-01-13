@@ -20,7 +20,17 @@ public LocalDateTime getDataHora() {
         return dataHora;
     }
 
+public Medico getMedico() {
+    return medico;
+}
+
+public Paciente getPaciente() {
+    return paciente;
+}
+
+@Override
 public String toString() {
-        return id + ";" + medico.getDescricao() + ";" + paciente.getDescricao() + ";" + dataHora;
-    }
+    return id + "; " + medico + "; " + paciente + "; " + dataHora;
+}
+
 }

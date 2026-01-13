@@ -43,7 +43,8 @@ public class GerenciadorPacientes {
             PrintWriter pw = new PrintWriter(new FileWriter(ARQUIVO));
 
             for (Paciente p : pacientes) {
-                pw.println(p.getNome() + ";" + p.getCpf() + ";" + p.planoSaude);
+                pw.println(p.getNome() + ";" + p.getCpf() + ";" + p.getPlanoSaude());
+
             }
 
             pw.close();
