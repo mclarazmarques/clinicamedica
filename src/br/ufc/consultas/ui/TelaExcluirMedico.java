@@ -10,9 +10,15 @@ public class TelaExcluirMedico {
     public TelaExcluirMedico() {
 
         JFrame frame = new JFrame("Excluir Médico");
-        frame.setSize(600, 420);
+        frame.setSize(500, 400);
         frame.setLocationRelativeTo(null);
         frame.setLayout(new BorderLayout());
+
+        // JLabel fundo = new JLabel(
+        //         new ImageIcon(getClass().getResource("/ui/img/menu.jpg"))
+        // );
+        // fundo.setLayout(null);
+        // setContentPane(fundo);
 
         JLabel titulo = new JLabel("Excluir Médico", SwingConstants.CENTER);
         titulo.setFont(new Font("Arial", Font.BOLD, 18));
@@ -30,7 +36,7 @@ public class TelaExcluirMedico {
         btnExcluir.addActionListener(e -> {
             Medico m = lista.getSelectedValue();
             if (m != null) {
-                GerenciadorMedicos.removerPorCpf(m.getCpf());
+                GerenciadorMedicos.removerPorCrm(m.getCrm());
                 model.removeElement(m);
             }
         });
@@ -42,5 +48,10 @@ public class TelaExcluirMedico {
         frame.add(rodape, BorderLayout.SOUTH);
 
         frame.setVisible(true);
+    }
+
+    private void setContentPane(JLabel fundo) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setContentPane'");
     }
 }

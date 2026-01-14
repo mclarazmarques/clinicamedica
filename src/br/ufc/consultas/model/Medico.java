@@ -1,24 +1,35 @@
 package model;
 
-public class Medico extends Pessoa {
-    public String especialidade;
+public class Medico {
 
-    public Medico(String nome, String cpf, String especialidade){
-        super(nome, cpf);
+    private String nome;
+    private String crm;
+    private String especialidade;
+
+    public Medico(String nome, String crm, String especialidade) {
+        this.nome = nome;
+        this.crm = crm;
         this.especialidade = especialidade;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String getCrm() {
+        return crm;
     }
 
     public String getEspecialidade() {
         return especialidade;
     }
 
-    @Override
-    public String getDescricao(){
-        return "O médico " + getNome() + " possui especialidade: " + especialidade;
+    public String getDescricao() {
+        return nome + " - CRM: " + crm;
     }
 
     @Override
     public String toString() {
-        return "Nome: " + getNome() + " | CPF: " + getCpf() + " | Especialidade: " + especialidade;
+        return nome + " | CRM: " + crm + " | " + especialidade;
     }
 }

@@ -10,9 +10,15 @@ public class TelaListaPacientes extends JFrame {
     public TelaListaPacientes() {
 
         setTitle("Pacientes");
-        setSize(1024, 695);
+        setSize(500, 400);
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
+
+        // JLabel fundo = new JLabel(
+        //         new ImageIcon(getClass().getResource("/ui/img/menu.jpg"))
+        // );
+        // fundo.setLayout(null);
+        // setContentPane(fundo);
 
         JLabel titulo = new JLabel("Pacientes Cadastrados", SwingConstants.CENTER);
         titulo.setFont(new Font("Arial", Font.BOLD, 18));

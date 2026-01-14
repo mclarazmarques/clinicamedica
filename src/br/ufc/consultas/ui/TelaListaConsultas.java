@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 import model.Consulta;
+import model.StatusConsulta; // ← ADICIONADO
 import service.GerenciadorConsultas;
 
 public class TelaListaConsultas extends JFrame {
@@ -15,7 +16,7 @@ public class TelaListaConsultas extends JFrame {
         this.gerenciador = gerenciador;
 
         setTitle("Consultas");
-        setSize(750, 420);
+        setSize(500, 400);
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
 
@@ -27,9 +28,15 @@ public class TelaListaConsultas extends JFrame {
         gerenciador.listar().forEach(model::addElement);
 
         JList<Consulta> lista = new JList<>(model);
+        add(new JScrollPane(lista), BorderLayout.CENTER);
 
         JButton btnEditar = new JButton("Editar");
         JButton btnExcluir = new JButton("Excluir");
+
+        // ===== NOVOS BOTÕES =====
+        JButton btnConcluir = new JButton("Concluir");
+        JButton btnFalta = new JButton("Não Compareceu");
+        JButton btnCancelar = new JButton("Cancelar");
 
         btnExcluir.addActionListener(e -> {
             Consulta c = lista.getSelectedValue();
@@ -42,26 +49,44 @@ public class TelaListaConsultas extends JFrame {
         btnEditar.addActionListener(e -> {
             Consulta c = lista.getSelectedValue();
             if (c != null) {
-                new TelaEditarConsulta(c, model, gerenciador);
+                new TelaEditarConsulta(c, model, lista);
             }
         });
 
-        add(new JScrollPane(lista), BorderLayout.CENTER);
+        // ===== AÇÕES DOS NOVOS BOTÕES =====
+        btnConcluir.addActionListener(e -> {
+            Consulta c = lista.getSelectedValue();
+            if (c != null) {
+                c.setStatus(StatusConsulta.CONCLUIDA);
+                lista.repaint();
+            }
+        });
+
+        btnFalta.addActionListener(e -> {
+            Consulta c = lista.getSelectedValue();
+            if (c != null) {
+                c.setStatus(StatusConsulta.NAO_COMPARECEU);
+                lista.repaint();
+            }
+        });
+
+        btnCancelar.addActionListener(e -> {
+            Consulta c = lista.getSelectedValue();
+            if (c != null) {
+                c.setStatus(StatusConsulta.CANCELADA);
+                lista.repaint();
+            }
+        });
 
         JPanel rodape = new JPanel();
         rodape.add(btnEditar);
         rodape.add(btnExcluir);
+        rodape.add(btnConcluir);
+        rodape.add(btnFalta);
+        rodape.add(btnCancelar);
+
         add(rodape, BorderLayout.SOUTH);
 
         setVisible(true);
-
-
-        btnEditar.addActionListener(e -> {
-        Consulta c = lista.getSelectedValue();
-        if (c != null) {
-        new TelaEditarConsulta(c, model, gerenciador);
-    }
-});
-
     }
 }

@@ -10,7 +10,7 @@ public class TelaExcluirPaciente {
     public TelaExcluirPaciente() {
 
         JFrame frame = new JFrame("Excluir Paciente");
-        frame.setSize(600, 420);
+        frame.setSize(500, 400);
         frame.setLocationRelativeTo(null);
         frame.setLayout(new BorderLayout());
 

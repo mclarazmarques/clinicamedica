@@ -16,6 +16,14 @@ public class GerenciadorMedicos {
 
     public static void adicionar(Medico m){
         carregar();
+
+        boolean existe = medicos.stream()
+                .anyMatch(med -> med.getCrm().equalsIgnoreCase(m.getCrm()));
+
+        if (existe) {
+            throw new RuntimeException("Já existe um médico cadastrado com este CRM.");
+        }
+
         medicos.add(m);
         salvar();
     }
@@ -25,10 +33,11 @@ public class GerenciadorMedicos {
         return medicos;
     }
 
-    public static boolean removerPorCpf(String cpf){
+    // Nome ajustado (antes estava cpf, mas é CRM)
+    public static boolean removerPorCrm(String crm){
         carregar();
 
-        boolean removido = medicos.removeIf(m -> m.getCpf().equals(cpf));
+        boolean removido = medicos.removeIf(m -> m.getCrm().equals(crm));
 
         if (removido) {
             salvar();
@@ -43,7 +52,11 @@ public class GerenciadorMedicos {
             PrintWriter pw = new PrintWriter(new FileWriter(ARQUIVO));
 
             for (Medico m : medicos) {
-                pw.println(m.getNome() + ";" + m.getCpf() + ";" + m.getEspecialidade());
+                pw.println(
+                        m.getNome() + ";" +
+                        m.getCrm() + ";" +
+                        m.getEspecialidade()
+                );
             }
 
             pw.close();
@@ -64,10 +77,10 @@ public class GerenciadorMedicos {
             // ignora se não existir
         }
     }
-    public static void remover(Medico medico) {
-    carregar();
-    medicos.remove(medico);
-    salvar();
-}
 
+    public static void remover(Medico medico) {
+        carregar();
+        medicos.remove(medico);
+        salvar();
+    }
 }

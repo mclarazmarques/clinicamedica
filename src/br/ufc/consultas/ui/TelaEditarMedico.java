@@ -8,12 +8,18 @@ public class TelaEditarMedico extends JFrame {
 
     public TelaEditarMedico(Medico medico, DefaultListModel<Medico> model) {
         setTitle("Editar Médico");
-        setSize(1024, 695);
+        setSize(500, 400);
         setLayout(null);
         setLocationRelativeTo(null);
 
+        JLabel fundo = new JLabel(
+                new ImageIcon(getClass().getResource("/ui/img/menu.jpg"))
+        );
+        fundo.setLayout(null);
+        setContentPane(fundo);
+
         JTextField txtNome = new JTextField(medico.getNome());
-        JTextField txtCpf = new JTextField(medico.getCpf());
+        JTextField txtCpf = new JTextField(medico.getCrm());
         JTextField txtEsp = new JTextField(medico.getEspecialidade());
 
         txtCpf.setEditable(false);
@@ -26,7 +32,7 @@ public class TelaEditarMedico extends JFrame {
         btnSalvar.setBounds(90, 160, 120, 30);
 
         btnSalvar.addActionListener(e -> {
-            GerenciadorMedicos.removerPorCpf(medico.getCpf());
+            GerenciadorMedicos.removerPorCrm(medico.getCrm());
             GerenciadorMedicos.adicionar(
                 new Medico(txtNome.getText(), txtCpf.getText(), txtEsp.getText())
             );

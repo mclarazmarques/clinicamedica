@@ -9,9 +9,15 @@ public class TelaEditarPaciente extends JFrame {
     public TelaEditarPaciente(Paciente paciente, DefaultListModel<Paciente> model) {
 
         setTitle("Editar Paciente");
-        setSize(1024, 695);
+        setSize(500, 400);
         setLayout(null);
         setLocationRelativeTo(null);
+
+        JLabel fundo = new JLabel(
+                new ImageIcon(getClass().getResource("/ui/img/menu.jpg"))
+        );
+        fundo.setLayout(null);
+        setContentPane(fundo);
 
         JLabel lblNome = new JLabel("Nome:");
         JLabel lblCpf = new JLabel("CPF:");

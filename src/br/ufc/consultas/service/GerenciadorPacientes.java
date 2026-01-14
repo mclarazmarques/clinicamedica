@@ -16,6 +16,14 @@ public class GerenciadorPacientes {
 
     public static void adicionar(Paciente p){
         carregar();
+
+        boolean existe = pacientes.stream()
+                .anyMatch(pac -> pac.getCpf().equalsIgnoreCase(p.getCpf()));
+
+        if (existe) {
+            throw new RuntimeException("Já existe um paciente cadastrado com este CPF.");
+        }
+
         pacientes.add(p);
         salvar();
     }
@@ -43,8 +51,11 @@ public class GerenciadorPacientes {
             PrintWriter pw = new PrintWriter(new FileWriter(ARQUIVO));
 
             for (Paciente p : pacientes) {
-                pw.println(p.getNome() + ";" + p.getCpf() + ";" + p.getPlanoSaude());
-
+                pw.println(
+                        p.getNome() + ";" +
+                        p.getCpf() + ";" +
+                        p.getPlanoSaude()
+                );
             }
 
             pw.close();
@@ -67,9 +78,8 @@ public class GerenciadorPacientes {
     }
 
     public static void remover(Paciente paciente) {
-    carregar();
-    pacientes.remove(paciente);
-    salvar();
-}
-
+        carregar();
+        pacientes.remove(paciente);
+        salvar();
+    }
 }

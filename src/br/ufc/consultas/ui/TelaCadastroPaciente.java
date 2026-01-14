@@ -3,60 +3,111 @@ package ui;
 import javax.swing.*;
 import model.Paciente;
 import service.GerenciadorPacientes;
+import java.awt.Color;
 
 public class TelaCadastroPaciente extends JFrame {
 
     public TelaCadastroPaciente() {
         setTitle("Cadastro de Paciente");
-        setSize(1024, 695);
+        setSize(500, 400);
         setLayout(null);
 
+        JLabel fundo = new JLabel(
+                new ImageIcon(getClass().getResource("/ui/img/menu.jpg"))
+        );
+        fundo.setLayout(null);
+        setContentPane(fundo);
+
         JLabel lblNome = new JLabel("Nome:");
-        lblNome.setBounds(20, 20, 80, 25);
+        lblNome.setBounds(80, 30, 180, 30);
+        lblNome.setForeground(Color.WHITE);
         add(lblNome);
 
         JTextField txtNome = new JTextField();
-        txtNome.setBounds(100, 20, 150, 25);
+        txtNome.setBounds(140, 30, 180, 30);
         add(txtNome);
 
         JLabel lblCpf = new JLabel("CPF:");
-        lblCpf.setBounds(20, 60, 80, 25);
+        lblCpf.setBounds(80, 100, 180, 30);
+        lblCpf.setForeground(Color.WHITE);
         add(lblCpf);
 
         JTextField txtCpf = new JTextField();
-        txtCpf.setBounds(100, 60, 150, 25);
+        txtCpf.setBounds(140, 100, 180, 30);
         add(txtCpf);
 
         JLabel lblPlano = new JLabel("Plano:");
-        lblPlano.setBounds(20, 100, 80, 25);
+        lblPlano.setBounds(80, 170, 180, 30);
+        lblPlano.setForeground(Color.WHITE);
         add(lblPlano);
 
         JTextField txtPlano = new JTextField();
-        txtPlano.setBounds(100, 100, 150, 25);
+        txtPlano.setBounds(140, 170, 180, 30);
         add(txtPlano);
 
         JButton btnSalvar = new JButton("Salvar");
-        btnSalvar.setBounds(90, 150, 100, 30);
+        btnSalvar.setBounds(140, 240, 180, 30);
+        btnSalvar.setBackground(new Color(0, 123, 255));
+        btnSalvar.setForeground(Color.WHITE);
+        btnSalvar.setFocusPainted(false);
         add(btnSalvar);
 
         btnSalvar.addActionListener(e -> {
-            Paciente p = new Paciente(
-                txtNome.getText(),
-                txtCpf.getText(),
-                txtPlano.getText()
+            try {
+                if (txtNome.getText().trim().isEmpty() ||
+            txtCpf.getText().trim().isEmpty() ||
+            txtPlano.getText().trim().isEmpty()) {
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Preencha todos os campos!",
+                    "Erro",
+                    JOptionPane.ERROR_MESSAGE
             );
-            GerenciadorPacientes.adicionar(p);
-            JOptionPane.showMessageDialog(this, "Paciente cadastrado!");
+            return;
+        }
+
+        Paciente p = new Paciente(
+                txtNome.getText().trim(),
+                txtCpf.getText().trim(),
+                txtPlano.getText().trim()
+        );
+
+        GerenciadorPacientes.adicionar(p);
+
+        JOptionPane.showMessageDialog(
+                this,
+                "Paciente cadastrado com sucesso!"
+        );
+
+        txtNome.setText("");
+        txtCpf.setText("");
+        txtPlano.setText("");
+
+            } catch (RuntimeException ex) {
+                JOptionPane.showMessageDialog(
+                        this,
+                        ex.getMessage(),
+                        "Erro",
+                        JOptionPane.ERROR_MESSAGE
+                );
+            }
         });
 
         JButton btnListar = new JButton("Listar Pacientes");
-        btnListar.setBounds(90, 190, 150, 30);
+        btnListar.setBounds(140, 280, 180, 30);
+        btnListar.setBackground(new Color(0, 123, 255));
+        btnListar.setForeground(Color.WHITE);
+        btnListar.setFocusPainted(false);
         add(btnListar);
 
         btnListar.addActionListener(e -> new TelaListaPacientes());
 
         JButton btnExcluir = new JButton("Excluir");
-        btnExcluir.setBounds(90, 230, 100, 30);
+        btnExcluir.setBounds(140, 320, 180, 30);
+        btnExcluir.setBackground(new Color(0, 123, 255));
+        btnExcluir.setForeground(Color.WHITE);
+        btnExcluir.setFocusPainted(false);
         add(btnExcluir);
 
         btnExcluir.addActionListener(e -> new TelaExcluirPaciente());
