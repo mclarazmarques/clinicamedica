@@ -32,6 +32,24 @@ public class TelaListaConsultas extends JFrame {
         add(new JScrollPane(lista), BorderLayout.CENTER);
 
         JButton btnEditar = new JButton("Editar");
+
+        btnEditar.addActionListener(e -> {
+    Consulta c = lista.getSelectedValue();
+
+    if (c == null) {
+        JOptionPane.showMessageDialog(
+            this,
+            "Selecione uma consulta para editar!",
+            "Aviso",
+            JOptionPane.WARNING_MESSAGE
+        );
+        return;
+    }
+
+    new TelaEditarConsulta(c, model, lista); 
+});
+
+
         JButton btnExcluir = new JButton("Excluir");
 
         // ===== NOVOS BOTÕES =====
@@ -72,7 +90,7 @@ btnExcluir.addActionListener(e -> {
     }
 });
 
-        // ===== AÇÕES DOS NOVOS BOTÕES =====
+        //AÇÕES DOS NOVOS BOTÕES
         btnConcluir.addActionListener(e -> {
             Consulta c = lista.getSelectedValue();
             if (c != null) {
