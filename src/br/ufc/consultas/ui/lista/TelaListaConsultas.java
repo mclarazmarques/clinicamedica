@@ -1,4 +1,4 @@
-package ui;
+package ui.lista;
 
 import javax.swing.*;
 import java.awt.*;
@@ -6,6 +6,7 @@ import java.awt.*;
 import model.Consulta;
 import model.StatusConsulta; // ← ADICIONADO
 import service.GerenciadorConsultas;
+import ui.editar.TelaEditarConsulta;
 
 public class TelaListaConsultas extends JFrame {
 
@@ -38,20 +39,38 @@ public class TelaListaConsultas extends JFrame {
         JButton btnFalta = new JButton("Não Compareceu");
         JButton btnCancelar = new JButton("Cancelar");
 
-        btnExcluir.addActionListener(e -> {
-            Consulta c = lista.getSelectedValue();
-            if (c != null) {
-                gerenciador.remover(c);
-                model.removeElement(c);
-            }
-        });
+btnExcluir.addActionListener(e -> {
+    Consulta c = lista.getSelectedValue();
 
-        btnEditar.addActionListener(e -> {
-            Consulta c = lista.getSelectedValue();
-            if (c != null) {
-                new TelaEditarConsulta(c, model, lista);
-            }
-        });
+    if (c == null) {
+        JOptionPane.showMessageDialog(
+            this,
+            "Selecione um agendamento!",
+            "Aviso",
+            JOptionPane.WARNING_MESSAGE
+        );
+        return; 
+    }
+
+    int opcao = JOptionPane.showConfirmDialog(
+        this,
+        "Deseja realmente excluir este agendamento?",
+        "Confirmar exclusão",
+        JOptionPane.YES_NO_OPTION
+    );
+
+    if (opcao == JOptionPane.YES_OPTION) {
+        new GerenciadorConsultas().remover(c);
+        model.removeElement(c);
+
+        JOptionPane.showMessageDialog(
+            this,
+            "Agendamento excluído com sucesso!",
+            "Exclusão",
+            JOptionPane.INFORMATION_MESSAGE
+        );
+    }
+});
 
         // ===== AÇÕES DOS NOVOS BOTÕES =====
         btnConcluir.addActionListener(e -> {

@@ -1,8 +1,9 @@
-package ui;
+package ui.editar;
 
 import javax.swing.*;
 import model.Paciente;
 import service.GerenciadorPacientes;
+import java.awt.Color;
 
 public class TelaEditarPaciente extends JFrame {
 
@@ -21,22 +22,26 @@ public class TelaEditarPaciente extends JFrame {
 
         JLabel lblNome = new JLabel("Nome:");
         JLabel lblCpf = new JLabel("CPF:");
-        JLabel lblTelefone = new JLabel("Telefone:");
+        JLabel lblPlanoSaude = new JLabel("Plano:");
 
         JTextField txtNome = new JTextField(paciente.getNome());
         JTextField txtCpf = new JTextField(paciente.getCpf());
-        JTextField txtTelefone = new JTextField(paciente.getTelefone());
+        JTextField txtPlanoSaude = new JTextField(paciente.getPlanoSaude());
 
-        txtCpf.setEditable(false);
+        txtCpf.setEditable(true);
 
         lblNome.setBounds(30, 20, 80, 25);
+        lblNome.setForeground(Color.WHITE);
+
         txtNome.setBounds(110, 20, 150, 25);
 
         lblCpf.setBounds(30, 60, 80, 25);
+        lblCpf.setForeground(Color.WHITE);
         txtCpf.setBounds(110, 60, 150, 25);
 
-        lblTelefone.setBounds(30, 100, 80, 25);
-        txtTelefone.setBounds(110, 100, 150, 25);
+        lblPlanoSaude.setBounds(30, 100, 80, 25);
+        lblPlanoSaude.setForeground(Color.WHITE);
+        txtPlanoSaude.setBounds(110, 100, 150, 25);
 
         JButton btnSalvar = new JButton("Salvar");
         btnSalvar.setBounds(90, 160, 120, 30);
@@ -48,23 +53,33 @@ public class TelaEditarPaciente extends JFrame {
                 new Paciente(
                     txtNome.getText(),
                     txtCpf.getText(),
-                    txtTelefone.getText()
+                    txtPlanoSaude.getText()
                 )
             );
 
             model.clear();
             GerenciadorPacientes.listar().forEach(model::addElement);
 
+            //aviso de acao feita
+
+            JOptionPane.showMessageDialog(
+            this,
+                "Paciente atualizado com sucesso!",
+                "Sucesso",
+                JOptionPane.INFORMATION_MESSAGE
+            );
+
             dispose();
         });
 
-        add(lblNome);
-        add(txtNome);
-        add(lblCpf);
-        add(txtCpf);
-        add(lblTelefone);
-        add(txtTelefone);
-        add(btnSalvar);
+        fundo.add(lblNome);
+        fundo.add(txtNome);
+        fundo.add(lblCpf);
+        fundo.add(txtCpf);
+        fundo.add(btnSalvar);
+        fundo.add(lblPlanoSaude);
+        fundo.add(txtPlanoSaude);
+
 
         setVisible(true);
     }

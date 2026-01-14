@@ -1,4 +1,4 @@
-package ui;
+package ui.editar;
 
 import javax.swing.*;
 import model.Medico;
@@ -19,13 +19,13 @@ public class TelaEditarMedico extends JFrame {
         setContentPane(fundo);
 
         JTextField txtNome = new JTextField(medico.getNome());
-        JTextField txtCpf = new JTextField(medico.getCrm());
+        JTextField txtCrm = new JTextField(medico.getCrm());
         JTextField txtEsp = new JTextField(medico.getEspecialidade());
 
-        txtCpf.setEditable(false);
+        txtCrm.setEditable(true);
 
         txtNome.setBounds(50, 30, 200, 25);
-        txtCpf.setBounds(50, 70, 200, 25);
+        txtCrm.setBounds(50, 70, 200, 25);
         txtEsp.setBounds(50, 110, 200, 25);
 
         JButton btnSalvar = new JButton("Salvar");
@@ -34,17 +34,26 @@ public class TelaEditarMedico extends JFrame {
         btnSalvar.addActionListener(e -> {
             GerenciadorMedicos.removerPorCrm(medico.getCrm());
             GerenciadorMedicos.adicionar(
-                new Medico(txtNome.getText(), txtCpf.getText(), txtEsp.getText())
+                new Medico(txtNome.getText(), txtCrm.getText(), txtEsp.getText())
             );
 
             model.clear();
             GerenciadorMedicos.listar().forEach(model::addElement);
 
+            //aviso de acao feita 
+            JOptionPane.showMessageDialog(
+            this,
+            "Médico atualizado com sucesso!",
+            "Sucesso",
+            JOptionPane.INFORMATION_MESSAGE
+);
+
+
             dispose();
         });
 
         add(txtNome);
-        add(txtCpf);
+        add(txtCrm);
         add(txtEsp);
         add(btnSalvar);
 

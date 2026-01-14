@@ -1,8 +1,12 @@
-package ui;
+package ui.cadastro;
 
 import javax.swing.*;
 import model.Medico;
 import service.GerenciadorMedicos;
+import ui.excluir.TelaExcluirMedico;
+import ui.lista.TelaListaMedicos;
+import ui.TelaPrincipal;
+
 import java.awt.Color;
 
 public class TelaCadastroMedico extends JFrame {
@@ -54,35 +58,35 @@ public class TelaCadastroMedico extends JFrame {
 
         btnSalvar.addActionListener(e -> {
             try {
-if (txtNome.getText().trim().isEmpty() ||
-            txtCrm.getText().trim().isEmpty() ||
-            txtEsp.getText().trim().isEmpty()) {
+                if (txtNome.getText().trim().isEmpty() ||
+                    txtCrm.getText().trim().isEmpty() ||
+                    txtEsp.getText().trim().isEmpty()) {
 
-            JOptionPane.showMessageDialog(
-                    this,
-                    "Preencha todos os campos!",
-                    "Erro",
-                    JOptionPane.ERROR_MESSAGE
-            );
-            return;
-        }
+                    JOptionPane.showMessageDialog(
+                            this,
+                            "Preencha todos os campos!",
+                            "Erro",
+                            JOptionPane.ERROR_MESSAGE
+                    );
+                    return;
+                }
 
-        Medico m = new Medico(
-                txtNome.getText().trim(),
-                txtCrm.getText().trim(),
-                txtEsp.getText().trim()
-        );
+                Medico m = new Medico(
+                        txtNome.getText().trim(),
+                        txtCrm.getText().trim(),
+                        txtEsp.getText().trim()
+                );
 
-        GerenciadorMedicos.adicionar(m);
+                GerenciadorMedicos.adicionar(m);
 
-        JOptionPane.showMessageDialog(
-                this,
-                "Médico cadastrado com sucesso!"
-        );
+                JOptionPane.showMessageDialog(
+                        this,
+                        "Médico cadastrado com sucesso!"
+                );
 
-        txtNome.setText("");
-        txtCrm.setText("");
-        txtEsp.setText("");
+                // VOLTA PARA TELA INICAL
+                new TelaPrincipal();
+                dispose();
 
             } catch (RuntimeException ex) {
                 JOptionPane.showMessageDialog(
@@ -101,7 +105,10 @@ if (txtNome.getText().trim().isEmpty() ||
         btnListar.setFocusPainted(false);
         add(btnListar);
 
-        btnListar.addActionListener(e -> new TelaListaMedicos());
+        btnListar.addActionListener(e -> {
+            new TelaListaMedicos();
+            dispose();
+        });
 
         JButton btnExcluir = new JButton("Excluir");
         btnExcluir.setBounds(140, 320, 180, 30);
@@ -110,8 +117,28 @@ if (txtNome.getText().trim().isEmpty() ||
         btnExcluir.setFocusPainted(false);
         add(btnExcluir);
 
-        btnExcluir.addActionListener(e -> new TelaExcluirMedico());
+        btnExcluir.addActionListener(e -> {
+            new TelaExcluirMedico();
+            dispose();
+        });
 
+        setLocationRelativeTo(null);
         setVisible(true);
+
+        //botao de voltar
+
+        JButton btnVoltar = new JButton("↩");
+        btnVoltar.setBounds(20, 20, 50, 30);
+        btnVoltar.setBackground(new Color(108, 117, 125));
+        btnVoltar.setForeground(Color.WHITE);
+        btnVoltar.setFocusPainted(false);
+        add(btnVoltar);
+
+        btnVoltar.addActionListener(e -> {
+        new TelaPrincipal();
+        dispose();
+        });
+
+
     }
 }

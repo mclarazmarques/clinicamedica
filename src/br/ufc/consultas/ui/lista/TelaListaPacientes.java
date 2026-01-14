@@ -1,9 +1,10 @@
-package ui;
+package ui.lista;
 
 import javax.swing.*;
 import java.awt.*;
 import model.Paciente;
 import service.GerenciadorPacientes;
+import ui.editar.TelaEditarPaciente;
 
 public class TelaListaPacientes extends JFrame {
 
@@ -33,11 +34,35 @@ public class TelaListaPacientes extends JFrame {
         JButton btnExcluir = new JButton("Excluir");
 
         btnExcluir.addActionListener(e -> {
-            Paciente p = lista.getSelectedValue();
-            if (p != null) {
-                GerenciadorPacientes.removerPorCpf(p.getCpf());
-                model.removeElement(p);
-            }
+Paciente p = lista.getSelectedValue();
+    if (p != null) {
+
+        int opcao = JOptionPane.showConfirmDialog(
+            this,
+            "Deseja realmente excluir este paciente?",
+            "Confirmar exclusão",
+            JOptionPane.YES_NO_OPTION
+        );
+
+        if (opcao == JOptionPane.YES_OPTION) {
+            GerenciadorPacientes.removerPorCpf(p.getCpf());
+            model.removeElement(p);
+
+            JOptionPane.showMessageDialog(
+                this,
+                "Paciente excluído com sucesso!",
+                "Exclusão",
+                JOptionPane.INFORMATION_MESSAGE
+            );
+        }
+    } else {
+        JOptionPane.showMessageDialog(
+            this,
+            "Selecione um paciente!",
+            "Aviso",
+            JOptionPane.WARNING_MESSAGE
+        );
+    }
         });
 
         btnEditar.addActionListener(e -> {
@@ -55,5 +80,7 @@ public class TelaListaPacientes extends JFrame {
         add(rodape, BorderLayout.SOUTH);
 
         setVisible(true);
+
+        
     }
 }

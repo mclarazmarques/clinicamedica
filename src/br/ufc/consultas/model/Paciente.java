@@ -37,8 +37,4 @@ public class Paciente {
         return nome + " | CPF: " + cpf + " | Plano: " + planoSaude;
     }
 
-    public String getTelefone() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getTelefone'");
-    }
 }

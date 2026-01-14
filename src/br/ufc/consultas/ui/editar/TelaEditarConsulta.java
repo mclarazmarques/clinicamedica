@@ -1,4 +1,4 @@
-package ui;
+package ui.editar;
 
 import javax.swing.*;
 import java.time.LocalDateTime;

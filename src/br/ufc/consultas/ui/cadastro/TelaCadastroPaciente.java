@@ -1,8 +1,12 @@
-package ui;
+package ui.cadastro;
 
 import javax.swing.*;
 import model.Paciente;
 import service.GerenciadorPacientes;
+import ui.TelaPrincipal;
+import ui.excluir.TelaExcluirPaciente;
+import ui.lista.TelaListaPacientes;
+
 import java.awt.Color;
 
 public class TelaCadastroPaciente extends JFrame {
@@ -113,5 +117,19 @@ public class TelaCadastroPaciente extends JFrame {
         btnExcluir.addActionListener(e -> new TelaExcluirPaciente());
 
         setVisible(true);
+
+        JButton btnVoltar = new JButton("↩");
+        btnVoltar.setBounds(20, 20, 50, 30);
+        btnVoltar.setBackground(new Color(108, 117, 125));
+        btnVoltar.setForeground(Color.WHITE);
+        btnVoltar.setFocusPainted(false);
+        add(btnVoltar);
+
+        btnVoltar.addActionListener(e -> {
+        new TelaPrincipal();
+        dispose();
+        });
+
+        
     }
 }

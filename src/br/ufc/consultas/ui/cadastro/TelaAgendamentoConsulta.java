@@ -1,4 +1,4 @@
-package ui;
+package ui.cadastro;
 
 import javax.swing.*;
 import java.time.LocalDate;
@@ -13,6 +13,8 @@ import model.Paciente;
 import service.GerenciadorConsultas;
 import service.GerenciadorMedicos;
 import service.GerenciadorPacientes;
+import ui.TelaPrincipal;
+import ui.lista.TelaListaConsultas;
 
 import java.awt.Color;
 
@@ -160,7 +162,7 @@ public class TelaAgendamentoConsulta extends JFrame {
             }
         });
 
-        // ===== BOTÃO GERENCIAR CONSULTAS =====
+        //BOTÃO GERENCIAR CONSULTA
         JButton btnGerenciar = new JButton("Gerenciar Consultas");
         btnGerenciar.setBounds(180, 240, 200, 30);
 
@@ -175,5 +177,17 @@ public class TelaAgendamentoConsulta extends JFrame {
         });
 
         setVisible(true);
+
+        JButton btnVoltar = new JButton("↩");
+        btnVoltar.setBounds(400, 20, 50, 30);
+        btnVoltar.setBackground(new Color(108, 117, 125));
+        btnVoltar.setForeground(Color.WHITE);
+        btnVoltar.setFocusPainted(false);
+        add(btnVoltar);
+
+        btnVoltar.addActionListener(e -> {
+        new TelaPrincipal();
+        dispose();
+        });
     }
 }
