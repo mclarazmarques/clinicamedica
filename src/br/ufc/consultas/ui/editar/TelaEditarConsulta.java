@@ -39,7 +39,7 @@ public class TelaEditarConsulta extends JFrame {
         fundo.setLayout(null);
         setContentPane(fundo);
 
-        // ===== LABELS =====
+        // labels
         JLabel lblMedico = new JLabel("Médico:");
         lblMedico.setForeground(Color.WHITE);
 
@@ -49,7 +49,7 @@ public class TelaEditarConsulta extends JFrame {
         JLabel lblDataHora = new JLabel("Data e Hora (DD/MM/AAAA HH:MM):");
         lblDataHora.setForeground(Color.WHITE);
 
-        // CAMPOS
+        // campos
         JTextField txtMedico =
                 new JTextField(consulta.getMedico().toString());
         JTextField txtPaciente =
@@ -60,7 +60,7 @@ public class TelaEditarConsulta extends JFrame {
         txtMedico.setEditable(false);
         txtPaciente.setEditable(false);
 
-        //POSIÇÕES 
+        //locais e posicoes dos botoes
         lblMedico.setBounds(30, 30, 120, 25);
         txtMedico.setBounds(160, 30, 200, 25);
 
@@ -70,7 +70,7 @@ public class TelaEditarConsulta extends JFrame {
         lblDataHora.setBounds(30, 110, 250, 25);
         txtDataHora.setBounds(30, 140, 330, 25);
 
-        //BOTÃO SALVAR
+        //salvar
         JButton btnSalvar = new JButton("Salvar");
         btnSalvar.setBounds(150, 200, 120, 30);
 
@@ -103,7 +103,7 @@ public class TelaEditarConsulta extends JFrame {
             }
         });
 
-        // ===== ADD COMPONENTES =====
+        // adicao dos componentes
         add(lblMedico);
         add(txtMedico);
         add(lblPaciente);

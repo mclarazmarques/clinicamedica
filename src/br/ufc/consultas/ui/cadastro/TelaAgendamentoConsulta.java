@@ -38,7 +38,7 @@ public class TelaAgendamentoConsulta extends JFrame {
         fundo.setLayout(null);
         setContentPane(fundo);
 
-        // ===== PACIENTE =====
+        // pacientes
         JLabel lblPaciente = new JLabel("Paciente (nome):");
         lblPaciente.setBounds(20, 20, 200, 30);
         lblPaciente.setForeground(Color.WHITE);
@@ -48,7 +48,7 @@ public class TelaAgendamentoConsulta extends JFrame {
         txtPaciente.setBounds(180, 20, 200, 30);
         add(txtPaciente);
 
-        // ===== MÉDICO =====
+        // medicos
         JLabel lblMedico = new JLabel("Médico (nome):");
         lblMedico.setBounds(20, 60, 200, 30);
         lblMedico.setForeground(Color.WHITE);
@@ -58,7 +58,7 @@ public class TelaAgendamentoConsulta extends JFrame {
         txtMedico.setBounds(180, 60, 200, 30);
         add(txtMedico);
 
-        // ===== DATA =====
+        // data
         JLabel lblData = new JLabel("Data (DD/MM/AAAA):");
         lblData.setBounds(20, 100, 200, 30);
         lblData.setForeground(Color.WHITE);
@@ -68,7 +68,7 @@ public class TelaAgendamentoConsulta extends JFrame {
         txtData.setBounds(180, 100, 200, 30);
         add(txtData);
 
-        // ===== HORÁRIO =====
+        // horario
         JLabel lblHorario = new JLabel("Horário (HH:MM):");
         lblHorario.setBounds(20, 140, 200, 30);
         lblHorario.setForeground(Color.WHITE);
@@ -78,7 +78,7 @@ public class TelaAgendamentoConsulta extends JFrame {
         txtHorario.setBounds(180, 140, 200, 30);
         add(txtHorario);
 
-        // ===== BOTÃO AGENDAR =====
+        // agendar=
         JButton btnAgendar = new JButton("Agendar");
         btnAgendar.setBounds(180, 190, 200, 30);
 
@@ -151,7 +151,7 @@ public class TelaAgendamentoConsulta extends JFrame {
         txtData.setText("");
         txtHorario.setText("");
             }
-            //  CONFLITO DE AGENDA
+            // conflito de agenda impedir que coloque 2 vzs
             catch (RuntimeException ex) {
                 JOptionPane.showMessageDialog(
                         this,
@@ -162,7 +162,7 @@ public class TelaAgendamentoConsulta extends JFrame {
             }
         });
 
-        //BOTÃO GERENCIAR CONSULTA
+        //gerenciar consultas
         JButton btnGerenciar = new JButton("Gerenciar Consultas");
         btnGerenciar.setBounds(180, 240, 200, 30);
 

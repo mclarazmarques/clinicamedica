@@ -50,8 +50,4 @@ public class TelaExcluirMedico {
         frame.setVisible(true);
     }
 
-    private void setContentPane(JLabel fundo) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setContentPane'");
-    }
 }
