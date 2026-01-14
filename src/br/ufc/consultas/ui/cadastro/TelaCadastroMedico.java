@@ -84,9 +84,8 @@ public class TelaCadastroMedico extends JFrame {
                         "Médico cadastrado com sucesso!"
                 );
 
-                // VOLTA PARA TELA INICAL
-                new TelaPrincipal();
-                dispose();
+                
+
 
             } catch (RuntimeException ex) {
                 JOptionPane.showMessageDialog(
